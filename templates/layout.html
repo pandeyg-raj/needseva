@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+
+        <!-- documentation at http://getbootstrap.com/docs/4.0/, alternative themes at https://bootswatch.com/4-alpha/ -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet"/>
+
+        <link href="/static/styles.css" rel="stylesheet"/>
+
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+        
+        <title>
+            {% block title %}
+            {% endblock %}
+        </title>
+    </head>
+
+    <body>
+        
+
+        <!-- Image and text 
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="{{ url_for('index') }}">
+        <img src="https://image.shutterstock.com/image-photo/bright-spring-view-cameo-island-260nw-1048185397.jpg" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+        NeedSeva
+        </a>-->
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a style="font-size: 200%; color:crimson;" class="navbar-brand" href="{{ url_for('index') }}">NeedSeva</a>
+          
+        <div class="collapse navbar-collapse" id="navbar"></div>
+            <ul class="nav justify-content-end">
+                <li class="nav-item">
+                  <a class="nav-link " href="{{ url_for('index') }}">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('register') }}">Register</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('signin') }}">Sign In</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact Us</a>
+                  </li>
+                
+              </ul>
+          </div>
+    </nav>
+    <main class="container p-5">
+        {% block body %}
+        {% endblock %}
+    </main>
+    </body> 
+</html>

@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+{% block title %} 
+Registration
+{% endblock %}
+
+{% block body %}
+<h2>Registration </h2>
+<br><br>
+<form action="{{ url_for('register') }}" method="POST">
+   
+    <div class="row">
+        <div class="col">
+        <input type="text" class="form-control" placeholder="First name">
+        </div>
+        <div class="col">
+        <input type="text" class="form-control" placeholder="Last name">
+        </div>
+    </div>
+    <br>
+    <div class="form-group">
+        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Address"><br>
+        
+        <input type="number" class="form-control" id="formGroupExampleInput2" placeholder="Zip code"><br>
+        
+        <input type="email" class="form-control" id="formGroupExampleInput2" placeholder="Email Address"><br>
+      
+        <input type="number" class="form-control" id="formGroupExampleInput2" placeholder="Phone Number"><br>
+      
+        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="UserName"><br>
+      
+        <input type="password" class="form-control" id="formGroupExampleInput2" placeholder="Password"><br>
+      
+        <input type="password" class="form-control" id="formGroupExampleInput2" placeholder="Confirm Password">
+      </div>
+
+      <select class="form-control">
+        <option disabled selected>Select security question</option>
+        <option>question1</option>
+        <option>question2</option>
+        <option>question3</option>
+      </select>
+      <br>
+      <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Answer">
+
+      <br><br>
+      <div id="align">
+        <input class="btn btn-primary" type="submit" value="Submit">
+        &nbsp; &nbsp;
+        <a class="btn btn-primary" href="{{ url_for('index') }}" role="button">Cancel</a>
+      </div>
+
+</form>
+{% endblock %}
