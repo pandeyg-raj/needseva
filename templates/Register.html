@@ -10,37 +10,37 @@ Registration
    
     <div class="row">
         <div class="col">
-        <input type="text" class="form-control" placeholder="First name">
+        <input name="fname" type="text" class="form-control" placeholder="First name" required>
         </div>
         <div class="col">
-        <input type="text" class="form-control" placeholder="Last name">
+        <input name="lname" type="text" class="form-control" placeholder="Last name" required>
         </div>
     </div>
     <br>
     <div class="form-group">
-        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Address"><br>
+        <input name="add" type="text" class="form-control" id="formGroupExampleInput" placeholder="Address" required><br>
         
-        <input type="number" class="form-control" id="formGroupExampleInput2" placeholder="Zip code"><br>
+        <input name="zip" type="number" class="form-control" id="formGroupExampleInput2" placeholder="Zip code" required><br>
         
-        <input type="email" class="form-control" id="formGroupExampleInput2" placeholder="Email Address"><br>
+        <input name="email" type="email" class="form-control" id="formGroupExampleInput2" placeholder="Email Address" required><br>
       
-        <input type="number" class="form-control" id="formGroupExampleInput2" placeholder="Phone Number"><br>
+        <input name="phNo" type="number" class="form-control" id="formGroupExampleInput2" placeholder="Phone Number" required><br>
       
-        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="UserName"><br>
+        <input name="user" type="text" class="form-control" id="formGroupExampleInput2" placeholder="UserName" required><br>
       
-        <input type="password" class="form-control" id="formGroupExampleInput2" placeholder="Password"><br>
+        <input name="pass" type="password" class="form-control" id="formGroupExampleInput2" placeholder="Password" required><br>
       
-        <input type="password" class="form-control" id="formGroupExampleInput2" placeholder="Confirm Password">
+        <input name="passconfirm" type="password" class="form-control" id="formGroupExampleInput2" placeholder="Confirm Password" required>
       </div>
 
-      <select class="form-control">
+      <select name="recoverpass" class="form-control" required>
         <option disabled selected>Select security question</option>
         <option>question1</option>
         <option>question2</option>
         <option>question3</option>
       </select>
       <br>
-      <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Answer">
+      <input name="ans" type="text" class="form-control" id="formGroupExampleInput2" placeholder="Answer" required>
 
       <br><br>
       <div id="align">

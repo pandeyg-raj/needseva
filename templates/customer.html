@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block title %} 
+Customer
+{% endblock %}
+
+{% block body %}
+
+<form action="{{ url_for('customer') }}" method="POST">
+    
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">What do you need help with?</label>
+      <textarea name="help" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    </div>
+    <br><br>
+    <div id="align">
+        <input class="btn btn-primary" type="submit" value="Submit">
+        &nbsp; &nbsp;
+        <a class="btn btn-primary" href="{{ url_for('index') }}" role="button">Cancel</a>
+      </div>
+  </form>
+{% endblock %}

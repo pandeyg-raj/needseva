@@ -34,21 +34,34 @@
             <a style="font-size: 200%; color:crimson;" class="navbar-brand" href="{{ url_for('index') }}">NeedSeva</a>
           
         <div class="collapse navbar-collapse" id="navbar"></div>
-            <ul class="nav justify-content-end">
-                <li class="nav-item">
-                  <a class="nav-link " href="{{ url_for('index') }}">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ url_for('register') }}">Register</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ url_for('signin') }}">Sign In</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact Us</a>
-                  </li>
-                
-              </ul>
+            {% if session.user_id %}
+                <ul class="nav justify-content-end">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('index') }}">{{ session.user_id }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('signout') }}">Sign Out</a>
+                    </li>
+                </ul>
+            {% else %}
+                <ul class="nav justify-content-end">
+                    <li class="nav-item">
+                    <a class="nav-link " href="{{ url_for('index') }}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('register') }}">Register</a>
+                    </li>
+
+                    <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('signin') }}">Sign In</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('contact') }}">Contact Us</a>
+                    </li>
+                    
+                </ul>
+            {% endif %}
           </div>
     </nav>
     <main class="container p-5">

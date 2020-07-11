@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block title %} 
+Thank You
+{% endblock %}
+
+{% block body %}
+
+<h2> Please select </h2><br><br>
+
+<div class="row">
+    <div class="col-3 offset-md-5">
+        <a href="{{ url_for('customer') }}">
+            <button type="button" class="btn btn-outline-primary btn-lg">Customer</button>
+            <br><br>
+        </a>
+        <a href="#">
+            <button type="button" class="btn btn-outline-primary btn-lg">Volunteer</button>
+        </a>    
+</div>
+
+
+{% endblock %}

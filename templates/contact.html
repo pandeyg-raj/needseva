@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block title %} 
+Contact
+{% endblock %}
+
+{% block body %}
+<h2>Contact Us</h2>
+<br><br>
+<form action="{{ url_for('contact') }}" method="POST">
+    <div class="form-group">
+      <label for="exampleFormControlInput1">Enter your Email address</label>
+      <input name="Qemail" type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+    </div>
+    
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">Enter your query here</label>
+      <textarea name="query" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    </div>
+    <br><br>
+    <div id="align">
+        <input class="btn btn-primary" type="submit" value="Submit">
+        &nbsp; &nbsp;
+        <a class="btn btn-primary" href="{{ url_for('index') }}" role="button">Cancel</a>
+      </div>
+  </form>
+{% endblock %}
