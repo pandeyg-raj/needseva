@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% block title %} 
+{% block title %}
 Registration
 {% endblock %}
 
@@ -7,7 +7,7 @@ Registration
 <h2>Registration </h2>
 <br><br>
 <form action="{{ url_for('register') }}" method="POST">
-   
+
     <div class="row">
         <div class="col">
         <input name="fname" type="text" class="form-control" placeholder="First name" required>
@@ -19,25 +19,25 @@ Registration
     <br>
     <div class="form-group">
         <input name="add" type="text" class="form-control" id="formGroupExampleInput" placeholder="Address" required><br>
-        
+
         <input name="zip" type="number" class="form-control" id="formGroupExampleInput2" placeholder="Zip code" required><br>
-        
+
         <input name="email" type="email" class="form-control" id="formGroupExampleInput2" placeholder="Email Address" required><br>
-      
+
         <input name="phNo" type="number" class="form-control" id="formGroupExampleInput2" placeholder="Phone Number" required><br>
-      
+
         <input name="user" type="text" class="form-control" id="formGroupExampleInput2" placeholder="UserName" required><br>
-      
+
         <input name="pass" type="password" class="form-control" id="formGroupExampleInput2" placeholder="Password" required><br>
-      
+
         <input name="passconfirm" type="password" class="form-control" id="formGroupExampleInput2" placeholder="Confirm Password" required>
       </div>
 
       <select name="recoverpass" class="form-control" required>
         <option disabled selected>Select security question</option>
-        <option>question1</option>
-        <option>question2</option>
-        <option>question3</option>
+        <option value = "que1">question1</option>
+        <option value = "que2">question2</option>
+        <option value = "que3">question3</option>
       </select>
       <br>
       <input name="ans" type="text" class="form-control" id="formGroupExampleInput2" placeholder="Answer" required>

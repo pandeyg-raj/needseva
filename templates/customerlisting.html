@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% block title %}
+Listings
+{% endblock %}
+
+{% block body %}
+<table id="example" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Contact</th>
+                <th>Zip</th>
+                <th>Date</th>
+                <th>Query</th>
+            </tr>
+        </thead>
+        <tbody>
+          {% for data in DATA %}
+            <tr>
+                <td>{{ data[0].FirstName }}</td>
+                <td>{{ data[0].LastName }}</td>
+                <td>{{ data[0].email }}</td>
+                <td>{{ data[0].Zip }}</td>
+                <td>{{ data[1].date }}</td>
+                <td>{{ data[1].query }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Contact</th>
+                <th>Zip</th>
+                <th>Date</th>
+                <th>Query</th>
+            </tr>
+        </tfoot>
+    </table>
+{% endblock %}
