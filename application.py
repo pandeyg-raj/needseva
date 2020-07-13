@@ -7,14 +7,14 @@ from sqlalchemy.orm import sessionmaker
 from sqldatabase import User, Recover, Details, Queries
 from sqlalchemy import join
 from sqlalchemy.sql import select
-engine = create_engine('sqlite:///needseva.db', echo=True)
+engine = create_engine('sqlite:////var/www/FlaskApps/needseva.db', echo=True)
 Session = sessionmaker(bind=engine)
 Session.configure(bind=engine)
 
 
 app = Flask(__name__)
 
-app.secret_key="asdkirj"
+#app.secret_key="asdkirj"
 
 def login_required(f):
     """
@@ -95,7 +95,6 @@ def signin():
 
 
 @app.route("/contact", methods=["POST","GET"])
-@login_required
 def contact():
     if request.method == "GET":
         return render_template("contact.html")
