@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block title %} 
+Request already done
+{% endblock %}
+
+{% block body %}
+
+<h1 style="margin-left: 15%;">You have already requested for help! Please try again next week!</h1>
+
+<h2>Your help request is shown below</h2>
+
+<table id="example" class="display" style="width:100%">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Date</th>
+            <th>Query</th>
+        </tr>
+    </thead>
+    <tbody>
+      {% for data in DATA %}
+        <tr>
+            <td>{{ data.username }}</td>
+            <td>{{ data.date }}</td>
+            <td>{{ data.query }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+   
+</table>
+
+{% endblock %}

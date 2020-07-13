@@ -47,7 +47,8 @@ class Queries(Base):
     __tablename__ = 'queries'
     username = Column(String, primary_key=True)
     query = Column(String)
-    date = Column(String, default=datetime.datetime.utcnow)
+    date = Column(String, default=datetime.datetime.today)
     def __init__(self,username,query):
         self.username = username
         self.query = query
+

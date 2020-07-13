@@ -1,5 +1,5 @@
 from flask import Flask, render_template, session, request, redirect
-#from helper import sendEmail
+from helper import sendEmail
 from functools import wraps
 import sqlalchemy
 from sqlalchemy import create_engine
@@ -65,6 +65,7 @@ def register():
         return render_template("selectCV.html")
 
 @app.route("/signout")
+@login_required
 def signout():
     session.clear()
     return redirect("/")
@@ -81,14 +82,12 @@ def signin():
         username = request.form.get("username")
         password = request.form.get("password")
 
-        results = dbsession.query(User).filter(User.username == username and User.hash == password)
+        exists = dbsession.query(User).filter(User.username == username).filter(User.hash == password).scalar()
 
-        print("data from db")
-        for result in results:
-                if result.username:
-                    dbsession.close()
-                    session["user_id"]=username
-                    return render_template("selectCV.html")
+        if exists is not None:
+            dbsession.close()
+            session["user_id"]=username
+            return render_template("selectCV.html")
 
         dbsession.close()
         return render_template("invalid.html")
@@ -96,14 +95,17 @@ def signin():
 
 
 @app.route("/contact", methods=["POST","GET"])
+@login_required
 def contact():
     if request.method == "GET":
         return render_template("contact.html")
     else:
-        #sendEmail( request.form.get("Qemail"),  request.form.get("query") )
-        return render_template("thankyou.html")
+        body = 'customer email: ' + request.form.get("Qemail") + '\n Customer request: ' + request.form.get("query") 
+        sendEmail( "patelg.hima@gmail.com", "NeedSeva Customer",  body)
+        return render_template("common.html", value = "Thank You for contacting us!")
 
 @app.route("/test", methods=["POST","GET"])
+@login_required
 def test():
     return render_template("selectCV.html")
 
@@ -111,14 +113,27 @@ def test():
 @login_required
 def vol():
     dbsession = Session()
-    print("data start")
+    #print("data start")
     results = dbsession.query(Details,Queries).filter( Details.username == Queries.username).all()
     return render_template("customerlisting.html",DATA = results)
 
 @app.route("/customer", methods=["POST","GET"])
+@login_required
 def customer():
     if request.method == "GET":
-        return render_template("customer.html")
+        dbsession = Session()
+        user = session["user_id"]
+
+        exists = dbsession.query(Queries.username).filter_by( username = user ).scalar()
+        
+        #results = dbsession.query(Queries).filter(Queries.username == user)
+        if exists is not None:
+            results = dbsession.query(Queries).filter(Queries.username == user)
+            dbsession.close()
+            return render_template("detailsindb.html", DATA = results)
+        else:
+            dbsession.close()
+            return render_template("customer.html")   
     else:
         help = request.form.get("help")
         user = session["user_id"]
@@ -128,3 +143,29 @@ def customer():
         dbsession.commit()
         dbsession.close()
         return render_template("thankyou.html")
+
+
+@app.route("/forgotpassword", methods=["POST","GET"])
+def forgotpassword():
+    if request.method == "GET":
+        return render_template("forgotpassword.html")
+
+    else:
+        user = request.form.get("username")
+        question = request.form.get("recoverpass")
+        answer = request.form.get("ans")
+
+        dbsession = Session()
+        exists = dbsession.query(Recover).filter( Recover.username == user).filter(Recover.question == question).filter(Recover.answer == answer).scalar()
+        if exists is not None:
+            results = dbsession.query(User).filter(User.username == user)
+            resultemail = dbsession.query(Details).filter(Details.username == user)
+
+            body = 'Your Password: ' + results[0].hash
+            sendEmail( resultemail[0].email, "password recovery",  body)
+            dbsession.close() 
+            return render_template("common.html", value = "Please check your Email for Password recovery!")
+        else:
+            dbsession.close()
+            return render_template("common.html", value = "Your data does not exist, please enter correct information")
+    
