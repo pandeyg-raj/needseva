@@ -1,20 +1,27 @@
-from flask import Flask, render_template, session, request, redirect
+from flask import Flask, render_template, session, request, redirect, send_from_directory
 from helper import sendEmail
 from functools import wraps
 import sqlalchemy
+import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqldatabase import User, Recover, Details, Queries
 from sqlalchemy import join
 from sqlalchemy.sql import select
-engine = create_engine('sqlite:////var/www/FlaskApps/needseva.db', echo=True)
+engine = create_engine('sqlite:///needseva.db', echo=True)
 Session = sessionmaker(bind=engine)
 Session.configure(bind=engine)
 
 
 app = Flask(__name__)
 
-#app.secret_key="asdkirj"
+app.secret_key="asdkirj"
+
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 def login_required(f):
     """
@@ -42,10 +49,20 @@ def register():
         dbsession = Session()
         name = request.form.get("user")
         pwd = request.form.get("pass")
-        obj = User(name,pwd);
-        dbsession.add(obj)
-        session["user_id"]=name
+        cpwd = request.form.get("passconfirm")
+        
+        if pwd != cpwd:
+            return render_template("common.html", value = "Password does not match, please try again!")
 
+        #check if username taken
+        exists = dbsession.query(User).filter(User.username == name).scalar()
+
+        if exists is not None:
+            return render_template("common.html", value = "Username already exists!")
+        
+        obj = User(name,pwd);
+        dbsession.add(obj) 
+        session["user_id"]=name
         question = request.form.get("recoverpass")
         answer = request.form.get("ans")
         obj1 = Recover(name,question,answer);

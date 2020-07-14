@@ -6,7 +6,7 @@ Registration
 {% block body %}
 <h2>Registration </h2>
 <br><br>
-<form action="{{ url_for('register') }}" method="POST">
+<form onsubmit="return validate()" action="{{ url_for('register') }}" method="POST">
 
     <div class="row">
         <div class="col">
@@ -18,19 +18,19 @@ Registration
     </div>
     <br>
     <div class="form-group">
-        <input name="add" type="text" class="form-control" id="formGroupExampleInput" placeholder="Address" required><br>
+        <input name="add" type="text" class="form-control" id="id1" placeholder="Address" required><br>
 
-        <input name="zip" type="number" class="form-control" id="formGroupExampleInput2" placeholder="Zip code" required><br>
+        <input name="zip" type="number" class="form-control" id="id2" placeholder="Zip code" required><br>
 
-        <input name="email" type="email" class="form-control" id="formGroupExampleInput2" placeholder="Email Address" required><br>
+        <input name="email" type="email" class="form-control" id="id3" placeholder="Email Address" required><br>
 
-        <input name="phNo" type="number" class="form-control" id="formGroupExampleInput2" placeholder="Phone Number" required><br>
+        <input name="phNo" type="number" class="form-control" id="id4" placeholder="Phone Number" required><br>
 
-        <input name="user" type="text" class="form-control" id="formGroupExampleInput2" placeholder="UserName" required><br>
+        <input name="user" type="text" class="form-control" id="id5" placeholder="UserName" required><br>
 
-        <input name="pass" type="password" class="form-control" id="formGroupExampleInput2" placeholder="Password" required><br>
+        <input name="pass" type="password" class="form-control" id="passwordid" placeholder="Password" required><br>
 
-        <input name="passconfirm" type="password" class="form-control" id="formGroupExampleInput2" placeholder="Confirm Password" required>
+        <input name="passconfirm" type="password" class="form-control" id="conpasswordid" placeholder="Confirm Password" required>
       </div>
 
       <select name="recoverpass" class="form-control" required>
