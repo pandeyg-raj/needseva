@@ -1,4 +1,4 @@
-from flask import Flask, render_template, session, request, redirect, send_from_directory
+from flask import Flask, render_template, session, request, redirect, send_from_directory, jsonify
 from helper import sendEmail
 from functools import wraps
 import sqlalchemy
@@ -16,6 +16,23 @@ Session.configure(bind=engine)
 app = Flask(__name__)
 
 app.secret_key="asdkirj"
+
+
+
+@app.route('/checkuser')
+def checkuser():
+    dbsession = Session()
+    name = request.args.get("username")
+    exists = dbsession.query(User).filter(User.username == name).scalar()
+
+    if exists is not None:
+        key = "Username already exists!"
+    else:
+        key = "Usernameavailable!"
+    dbsession.close()
+
+    return jsonify(key)
+
 
 
 @app.route('/favicon.ico')

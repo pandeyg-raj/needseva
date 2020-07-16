@@ -26,6 +26,36 @@
         } );
         </script>
 
+        <script>
+        $(document).ready(function(){
+
+        $("#iduser").change(function(){
+         let data_para = {
+            username: document.getElementById("iduser").value
+         };
+
+          $.getJSON( "/checkuser", data_para ,function( data ) {
+            
+            datavalue = data;
+            if(data != "Usernameavailable!")
+            {
+                document.getElementById("iduser").style.color = "white";
+                document.getElementById("iduser").style.backgroundColor = "red";
+                document.getElementById("iduser").value = data;
+            }
+            else
+            {
+                document.getElementById("iduser").style.color = "black";
+                document.getElementById("iduser").style.backgroundColor = "white";
+            }
+            
+          });
+
+
+        });
+
+        });
+        </script>
 
         <title>
             {% block title %}
@@ -33,7 +63,7 @@
         </title>
     </head>
 
-    <body>
+    <body style="background-color:#d5f0f5"; >
 
 
         <!-- Image and text
@@ -43,8 +73,8 @@
         NeedSeva
         </a>-->
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a style="font-size: 200%; color:crimson;" class="navbar-brand" href="{{ url_for('index') }}">NeedSeva</a>
+        <nav style ="background-color:#3ABEC3" class="navbar navbar-expand-lg navbar-light">
+            <a style="font-size: 200%;" class="navbar-brand" href="{{ url_for('index') }}">NeedSeva</a>
 
         <div class="collapse navbar-collapse" id="navbar"></div>
             {% if session.user_id %}
