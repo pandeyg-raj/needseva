@@ -135,6 +135,7 @@ def contact():
     else:
         body = 'customer email: ' + request.form.get("Qemail") + '\n Customer request: ' + request.form.get("query") 
         sendEmail( "patelg.hima@gmail.com", "NeedSeva Customer",  body)
+        print(body)
         return render_template("common.html", value = "Thank You for contacting us!")
 
 @app.route("/test", methods=["POST","GET"])

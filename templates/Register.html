@@ -43,11 +43,20 @@ Registration
       <input name="ans" type="text" class="form-control" id="formGroupExampleInput2" placeholder="Answer" required>
 
       <br><br>
+      <input type="checkbox" aria-label="Checkbox for following text input" required>
+      By clicking this box you agree with t&c
+          
+        
+
+        
+      <br><br>
       <div id="align">
         <input class="btn btn-primary" type="submit" value="Submit">
         &nbsp; &nbsp;
         <a class="btn btn-primary" href="{{ url_for('index') }}" role="button">Cancel</a>
       </div>
+
+      
 
 </form>
 {% endblock %}

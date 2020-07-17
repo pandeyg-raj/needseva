@@ -6,7 +6,7 @@ function validate() {
 
     if (pwd != conpwd)
     {
-      alert("pwd conpwd not same");
+      alert("Password and Confirm password are not same");
       return false;
       
     }
