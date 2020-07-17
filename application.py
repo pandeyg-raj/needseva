@@ -63,22 +63,32 @@ def register():
     if request.method == "GET":
         return render_template("Register.html")
     else:
-        dbsession = Session()
+
         name = request.form.get("user")
+        if not name:
+            return render_template("common.html","name required")
+
         pwd = request.form.get("pass")
+        if not pwd:
+            return render_template("common.html","password required")
+
         cpwd = request.form.get("passconfirm")
-        
+        if not cpwd:
+            return render_template("common.html","confirm password required")
+
+
         if pwd != cpwd:
             return render_template("common.html", value = "Password does not match, please try again!")
 
+        dbsession = Session()
         #check if username taken
         exists = dbsession.query(User).filter(User.username == name).scalar()
 
         if exists is not None:
             return render_template("common.html", value = "Username already exists!")
-        
+
         obj = User(name,pwd);
-        dbsession.add(obj) 
+        dbsession.add(obj)
         session["user_id"]=name
         question = request.form.get("recoverpass")
         answer = request.form.get("ans")
@@ -112,10 +122,14 @@ def signin():
         else:
             return redirect("/")
     else:
-        dbsession = Session()
-        username = request.form.get("username")
-        password = request.form.get("password")
 
+        username = request.form.get("username")
+        if not username:
+            return render_template("common.html","username required")
+        password = request.form.get("password")
+        if not password:
+            return render_template("common.html","password required")
+        dbsession = Session()
         exists = dbsession.query(User).filter(User.username == username).filter(User.hash == password).scalar()
 
         if exists is not None:
@@ -133,7 +147,7 @@ def contact():
     if request.method == "GET":
         return render_template("contact.html")
     else:
-        body = 'customer email: ' + request.form.get("Qemail") + '\n Customer request: ' + request.form.get("query") 
+        body = 'customer email: ' + request.form.get("Qemail") + '\n Customer request: ' + request.form.get("query")
         sendEmail( "patelg.hima@gmail.com", "NeedSeva Customer",  body)
         return render_template("common.html", value = "Thank You for contacting us!")
 
@@ -158,7 +172,7 @@ def customer():
         user = session["user_id"]
 
         exists = dbsession.query(Queries.username).filter_by( username = user ).scalar()
-        
+
         #results = dbsession.query(Queries).filter(Queries.username == user)
         if exists is not None:
             results = dbsession.query(Queries).filter(Queries.username == user)
@@ -166,7 +180,7 @@ def customer():
             return render_template("detailsindb.html", DATA = results)
         else:
             dbsession.close()
-            return render_template("customer.html")   
+            return render_template("customer.html")
     else:
         help = request.form.get("help")
         user = session["user_id"]
@@ -196,9 +210,8 @@ def forgotpassword():
 
             body = 'Your Password: ' + results[0].hash
             sendEmail( resultemail[0].email, "password recovery",  body)
-            dbsession.close() 
+            dbsession.close()
             return render_template("common.html", value = "Please check your Email for Password recovery!")
         else:
             dbsession.close()
             return render_template("common.html", value = "Your data does not exist, please enter correct information")
-    
