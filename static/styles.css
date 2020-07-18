@@ -9,6 +9,11 @@ h2
     color:white;
 }
 
+h1
+{
+    color:white;
+}
+
 label
 {
     color:white;
@@ -29,7 +34,7 @@ label
 {
     font-size: 30px;
     color:white;
-    //background:black;
+    background:black;
 }
 
 body {
