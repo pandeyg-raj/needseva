@@ -1,9 +1,43 @@
 #align
-{ 
+{
     padding-left: 40%;
 }
 
 h2
 {
     margin-left: 40%;
+    color:white;
+}
+
+h1
+{
+    color:white;
+}
+
+label
+{
+    color:white;
+}
+
+.nav-link
+{
+    font-size: x-large;
+    color: white;
+}
+
+#logo
+{
+    padding-left: 10%;
+}
+
+#indexpara
+{
+    font-size: 30px;
+    color:white;
+    background:black;
+}
+
+body {
+  background-color:#d5f0f5;
+  background-image: url('https://media.giphy.com/media/l3q2FeqYCPIOqVYZO/giphy.gif');
 }

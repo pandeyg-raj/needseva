@@ -19,12 +19,43 @@
         <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet"/>
         <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>      
 
+        <script src="/static/validate.js"></script>
         <script type="text/javascript">
           $(document).ready(function() {
             $('#example').DataTable();
         } );
         </script>
 
+        <script>
+        $(document).ready(function(){
+
+        $("#iduser").change(function(){
+         let data_para = {
+            username: document.getElementById("iduser").value
+         };
+
+          $.getJSON( "/checkuser", data_para ,function( data ) {
+
+            datavalue = data;
+            if(data != "Usernameavailable!")
+            {
+                document.getElementById("iduser").style.color = "white";
+                document.getElementById("iduser").style.backgroundColor = "red";
+                document.getElementById("iduser").value = data;
+            }
+            else
+            {
+                document.getElementById("iduser").style.color = "black";
+                document.getElementById("iduser").style.backgroundColor = "white";
+            }
+
+          });
+
+
+        });
+
+        });
+        </script>
 
         <title>
             {% block title %}
@@ -32,7 +63,7 @@
         </title>
     </head>
 
-    <body>
+    <body >
 
 
         <!-- Image and text
@@ -42,9 +73,10 @@
         NeedSeva
         </a>-->
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a style="font-size: 200%; color:crimson;" class="navbar-brand" href="{{ url_for('index') }}">NeedSeva</a>
-
+        <nav style ="background-color:#24292e" class="navbar navbar-expand-lg navbar-light">
+            <a style="font-size: 200%;" class="navbar-brand" href="{{ url_for('index') }}">
+            <img id="logo" src="/static/needseva4.png" width="40%" alt="NeedSeva Logo">
+            </a>
         <div class="collapse navbar-collapse" id="navbar"></div>
             {% if session.user_id %}
                 <ul class="nav justify-content-end">
@@ -52,10 +84,13 @@
                         <a class="nav-link" href="{{ url_for('index') }}">{{ session.user_id }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('test') }}"> Vol/Cus </a>
+                        <a class="nav-link" href="{{ url_for('test') }}"> Volunteer/Customer </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('signout') }}">Sign Out</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('contact') }}">Contact Us</a>
                     </li>
                 </ul>
             {% else %}

@@ -5,8 +5,8 @@ from email.mime.base import MIMEBase
 from email import encoders
 
 def sendEmail(Qemail,subject,query):
-    sender_email_address = ''
-    sender_email_password = ''
+    sender_email_address = 'patelg.hima@gmail.com'
+    sender_email_password = 'Hima2020!'
     receiver_email_address = Qemail
 
     email_subject_line = subject
