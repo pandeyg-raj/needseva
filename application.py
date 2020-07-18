@@ -58,6 +58,10 @@ def login_required(f):
 def index():
     return render_template("index.html")
 
+@app.route("/disclaim")
+def disclaim():
+    return render_template("disclaim.html")
+
 @app.route("/register", methods=["POST","GET"])
 def register():
     if request.method == "GET":

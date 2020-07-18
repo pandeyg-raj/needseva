@@ -44,11 +44,11 @@ Registration
 
       <br><br>
       <input type="checkbox" aria-label="Checkbox for following text input" required>
-      By clicking this box you agree with t&c
-          
-        
+      <label> By clicking this box you agree with <a href="{{ url_for('disclaim') }}">t&c</a> </label>
 
-        
+
+
+
       <br><br>
       <div id="align">
         <input class="btn btn-primary" type="submit" value="Submit">
@@ -56,7 +56,7 @@ Registration
         <a class="btn btn-primary" href="{{ url_for('index') }}" role="button">Cancel</a>
       </div>
 
-      
+
 
 </form>
 {% endblock %}
