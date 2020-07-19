@@ -8,7 +8,7 @@ from sqlalchemy.orm import sessionmaker
 from sqldatabase import User, Recover, Details, Queries
 from sqlalchemy import join
 from sqlalchemy.sql import select
-engine = create_engine('sqlite:///needseva.db', echo=True)
+engine = create_engine('sqlite:////var/www/FlaskApps/needseva.db', echo=True)
 Session = sessionmaker(bind=engine)
 Session.configure(bind=engine)
 

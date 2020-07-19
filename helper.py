@@ -6,7 +6,7 @@ from email import encoders
 
 def sendEmail(Qemail,subject,query):
     sender_email_address = 'patelg.hima@gmail.com'
-    sender_email_password = 'Hima2020!'
+    sender_email_password = 'iphgiixscdxjpjtf'
     receiver_email_address = Qemail
 
     email_subject_line = subject
