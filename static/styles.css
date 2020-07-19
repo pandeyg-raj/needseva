@@ -53,8 +53,14 @@ th
   color:white
 }
 body {
-  //background-color:#d5f0f5;
   background-image: url('wallpaper2.jpg');
   background-repeat:no-repeat;
-  background-size: 100%
+}
+
+html {
+
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
