@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block title %}
+Thank You
+{% endblock %}
+
+{% block body %}
+<h1 style="margin-left: 20%;"> Account information </h1><br/>
+
+<div id="userhome" style="margin-left: 20%;"> <span class="userclass">username :</span>{{ DATA[0].username }}<br/><br/>
+<span class="userclass"> FirstName: </span>{{ DATA[0].FirstName }}<br/><br/>
+<span class="userclass">LastName: </span>{{ DATA[0].LastName }}<br/><br/>
+<span class="userclass">Address: </span>{{ DATA[0].Address }}<br/><br/>
+<span class="userclass">Zip: </span>{{ DATA[0].Zip }}<br/><br/>
+<span class="userclass">email: </span>{{ DATA[0].email }}<br/><br/>
+<span class="userclass">phone: </span>{{ DATA[0].phone }}<br/><br/><br/>
+<a href="{{ url_for('customer') }}">
+    <button type="button" class="btn btn-outline-primary btn-lg">Your queries</button>
+    <br><br>
+</a>
+</div>
+{% endblock %}

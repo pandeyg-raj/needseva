@@ -9,6 +9,7 @@ from sqldatabase import User, Recover, Details, Queries
 from sqlalchemy import join
 from sqlalchemy.sql import select
 engine = create_engine('sqlite:////var/www/FlaskApps/needseva.db', echo=True)
+#engine = create_engine('sqlite:///needseva.db', echo=True)
 Session = sessionmaker(bind=engine)
 Session.configure(bind=engine)
 
@@ -168,6 +169,24 @@ def vol():
     #print("data start")
     results = dbsession.query(Details,Queries).filter( Details.username == Queries.username).all()
     return render_template("customerlisting.html",DATA = results)
+
+@app.route('/userhome')
+def userhome():
+    if request.method == "GET":
+        dbsession = Session()
+        user = session["user_id"]
+
+        exists = dbsession.query(Details).filter_by( username = user ).scalar()
+
+        #results = dbsession.query(Details).filter(Queries.username == user)
+        if exists is not None:
+            results = dbsession.query(Details).filter(Details.username == user)
+            dbsession.close()
+            return render_template("userhome.html", DATA = results)
+        else:
+            return "error"
+
+
 
 @app.route("/customer", methods=["POST","GET"])
 @login_required

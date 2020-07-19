@@ -25,6 +25,17 @@ label
     color: white;
 }
 
+#userhome
+{
+  font-size: x-large;
+  color: white;
+}
+
+.userclass
+{
+  color: black;
+}
+
 #logo
 {
     padding-left: 10%;
@@ -34,10 +45,16 @@ label
 {
     font-size: 30px;
     color:white;
-    background:black;
 }
 
+th
+{
+  background-color:black;
+  color:white
+}
 body {
-  background-color:#d5f0f5;
-  background-image: url('https://media.giphy.com/media/l3q2FeqYCPIOqVYZO/giphy.gif');
+  //background-color:#d5f0f5;
+  background-image: url('wallpaper2.jpg');
+  background-repeat:no-repeat;
+  background-size: 100%
 }
