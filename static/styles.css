@@ -19,6 +19,10 @@ label
     color:white;
 }
 
+.other {
+  background-color: #e7e7e7; color: black;
+  } /* Gray */
+
 .nav-link
 {
     font-size: x-large;
@@ -58,7 +62,6 @@ body {
 }
 
 html {
-
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

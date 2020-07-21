@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% block title %}
+Registration
+{% endblock %}
+
+{% block body %}
+<h2>Provide New Details </h2>
+<br><br>
+<form onsubmit="return validate()" action="{{ url_for('updatedetails') }}" method="POST">
+
+
+    <div class="form-group">
+
+        <span style="font-size: 150%;margin-right:2em;" class="badge badge-light"> FirstName:{{ DATA.FirstName }} </span>
+        <span style="font-size: 150%;" class="badge badge-light"> LastName:{{ DATA.LastName }} </span><br/><br/>
+
+        <input name="add" type="text" class="form-control" id="id1" placeholder="Address" required><br>
+
+        <input name="zip" type="number" class="form-control" id="id2" placeholder="Zip code" required><br>
+
+        <input name="email" type="email" class="form-control" id="id3" placeholder="Email Address" required><br>
+
+        <input name="phNo" type="number" class="form-control" id="id4" placeholder="Phone Number" required><br>
+
+      </div>
+
+      <br><br>
+      <input type="checkbox" aria-label="Checkbox for following text input" required>
+      <label> By clicking this box you agree with <a href="{{ url_for('disclaim') }}">t&c</a> </label>
+
+
+      <br><br>
+      <div id="align">
+        <input class="btn btn-primary" type="submit" value="Submit">
+        &nbsp; &nbsp;
+        <a class="btn btn-primary" href="{{ url_for('index') }}" role="button">Cancel</a>
+      </div>
+
+
+
+</form>
+{% endblock %}

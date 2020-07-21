@@ -171,6 +171,7 @@ def vol():
     return render_template("customerlisting.html",DATA = results)
 
 @app.route('/userhome')
+@login_required
 def userhome():
     if request.method == "GET":
         dbsession = Session()
@@ -186,7 +187,31 @@ def userhome():
         else:
             return "error"
 
-
+@app.route("/updatedetails", methods=["POST","GET"])
+@login_required
+def updatedetails():
+    if request.method == "GET":
+        user = session["user_id"]
+        dbsession = Session()
+        data = dbsession.query(Details).filter_by( username = user ).first()
+        dbsession.close();
+        return render_template("updatedetails.html",DATA = data)
+    else:
+        add = request.form.get("add")
+        zip = request.form.get("zip")
+        email = request.form.get("email")
+        phNo = request.form.get("phNo")
+        user = session["user_id"]
+        dbsession = Session()
+        data = dbsession.query(Details).filter_by( username = user ).first()
+        print ("start")
+        data.Address = add
+        data.Zip = zip
+        data.email = email
+        data.phone = phNo
+        dbsession.commit();
+        dbsession.close();
+        return redirect("/userhome")
 
 @app.route("/customer", methods=["POST","GET"])
 @login_required
@@ -239,3 +264,22 @@ def forgotpassword():
         else:
             dbsession.close()
             return render_template("common.html", value = "Your data does not exist, please enter correct information")
+
+@app.route("/changepassword", methods=["POST","GET"])
+@login_required
+def changepassword():
+    if request.method == "GET":
+        return render_template("changepassword.html")
+    else:
+        newpass = request.form.get("pass")
+        conpass = request.form.get("passconfirm")
+
+        if newpass != conpass:
+            return render_template("common.html","password confirm password not same")
+        user = session["user_id"]
+        dbsession = Session()
+        data = dbsession.query(User).filter_by( username = user ).first()
+        data.hash = newpass
+        dbsession.commit()
+        dbsession.close()
+        return redirect("/userhome")
