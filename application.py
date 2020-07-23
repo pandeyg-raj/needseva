@@ -8,8 +8,8 @@ from sqlalchemy.orm import sessionmaker
 from sqldatabase import User, Recover, Details, Queries
 from sqlalchemy import join
 from sqlalchemy.sql import select
-engine = create_engine('sqlite:////var/www/FlaskApps/needseva.db', echo=True)
-#engine = create_engine('sqlite:///needseva.db', echo=True)
+#engine = create_engine('sqlite:////var/www/FlaskApps/needseva.db', echo=True)
+engine = create_engine('sqlite:///needseva.db', echo=True)
 Session = sessionmaker(bind=engine)
 Session.configure(bind=engine)
 
@@ -53,6 +53,14 @@ def login_required(f):
             return redirect("/signin")
         return f(*args, **kwargs)
     return decorated_function
+
+@app.route("/<string:name>")
+def hello(name):
+    dbsession = Session()
+    data = dbsession.query(Queries).filter_by( username = name ).first()
+    dbsession.close()
+    print(data.query)
+    return render_template("common.html",value = data.query)
 
 
 @app.route("/")
@@ -168,6 +176,7 @@ def vol():
     dbsession = Session()
     #print("data start")
     results = dbsession.query(Details,Queries).filter( Details.username == Queries.username).all()
+    dbsession.close()
     return render_template("customerlisting.html",DATA = results)
 
 @app.route('/userhome')
