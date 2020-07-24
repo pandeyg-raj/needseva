@@ -8,8 +8,8 @@ from sqlalchemy.orm import sessionmaker
 from sqldatabase import User, Recover, Details, Queries
 from sqlalchemy import join
 from sqlalchemy.sql import select
-#engine = create_engine('sqlite:////var/www/FlaskApps/needseva.db', echo=True)
-engine = create_engine('sqlite:///needseva.db', echo=True)
+engine = create_engine('sqlite:////var/www/FlaskApps/needseva.db', echo=True)
+#engine = create_engine('sqlite:///needseva.db', echo=True)
 Session = sessionmaker(bind=engine)
 Session.configure(bind=engine)
 
@@ -61,8 +61,8 @@ def hello(name):
     dataDetails = dbsession.query(Details).filter_by( username = name ).first()
     dbsession.close()
     return render_template("customerDetails.html",dataQuery = dataQuery, dataDetails =dataDetails, cv = "Volunteer")
-    
-   
+
+
 
 
 @app.route("/")
