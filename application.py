@@ -57,10 +57,12 @@ def login_required(f):
 @app.route("/<string:name>")
 def hello(name):
     dbsession = Session()
-    data = dbsession.query(Queries).filter_by( username = name ).first()
+    dataQuery = dbsession.query(Queries).filter_by( username = name ).first()
+    dataDetails = dbsession.query(Details).filter_by( username = name ).first()
     dbsession.close()
-    print(data.query)
-    return render_template("common.html",value = data.query)
+    return render_template("customerDetails.html",dataQuery = dataQuery, dataDetails =dataDetails, cv = "Volunteer")
+    
+   
 
 
 @app.route("/")
@@ -165,10 +167,6 @@ def contact():
         print(body)
         return render_template("common.html", value = "Thank You for contacting us!")
 
-@app.route("/test", methods=["POST","GET"])
-@login_required
-def test():
-    return render_template("selectCV.html")
 
 @app.route("/vol")
 @login_required
@@ -177,7 +175,7 @@ def vol():
     #print("data start")
     results = dbsession.query(Details,Queries).filter( Details.username == Queries.username).all()
     dbsession.close()
-    return render_template("customerlisting.html",DATA = results)
+    return render_template("customerlisting.html",DATA = results, cv = "Volunteer")
 
 @app.route('/userhome')
 @login_required
@@ -218,8 +216,8 @@ def updatedetails():
         data.Zip = zip
         data.email = email
         data.phone = phNo
-        dbsession.commit();
-        dbsession.close();
+        dbsession.commit()
+        dbsession.close()
         return redirect("/userhome")
 
 @app.route("/customer", methods=["POST","GET"])
@@ -235,7 +233,7 @@ def customer():
         if exists is not None:
             results = dbsession.query(Queries).filter(Queries.username == user)
             dbsession.close()
-            return render_template("detailsindb.html", DATA = results)
+            return render_template("detailsindb.html", DATA = results, cv = "Customer")
         else:
             dbsession.close()
             return render_template("customer.html")
@@ -292,3 +290,17 @@ def changepassword():
         dbsession.commit()
         dbsession.close()
         return redirect("/userhome")
+
+
+@app.route("/EditQuery", methods=["POST"])
+@login_required
+def EditQuery():
+        NewQuery = request.form.get("EditQuery")
+        user = session["user_id"]
+        dbsession = Session()
+        data = dbsession.query(Queries).filter_by( username = user ).first()
+        print ("start")
+        data.query = NewQuery
+        dbsession.commit()
+        dbsession.close()
+        return redirect("/customer")

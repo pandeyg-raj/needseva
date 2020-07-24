@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block title %}
+Listings
+{% endblock %}
+
+{% block body %}
+<table id="example" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Contact</th>
+                <th>Zip</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+          
+            <tr>
+                <td>{{ dataDetails.FirstName }}</td>
+                <td>{{ dataDetails.LastName }}</td>
+                <td>{{ dataDetails.email }}</td>
+                <td>{{ dataDetails.Zip }}</td>
+                <td>{{ dataQuery.date }}</td>
+            </tr>
+          
+        </tbody>
+    </table>
+    <br><h3 style="color: white"> Customer Query: </h3><br>
+    <div style="color:black; background:white  ;height:200px;overflow:auto;">
+        
+        {{ dataQuery.query }}
+    </div>
+
+
+{% endblock %}

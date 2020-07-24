@@ -5,16 +5,14 @@ Request already done
 
 {% block body %}
 
-<h1 style="margin-left: 20%;">You have already requested for help!</h1><br><br>
-
-<h2 style="margin-left: 25%;">Your help request is shown below</h2><br><br>
+<div style="margin-left: 30%; font-size: 30px; color: white;">Your help request is shown below</div><br>
 
 <table id="example" class="display" style="width:100%">
     <thead>
         <tr>
             <th>First Name</th>
             <th>Date</th>
-            <th>Query</th>
+            
         </tr>
     </thead>
     <tbody>
@@ -22,11 +20,33 @@ Request already done
         <tr>
             <td>{{ data.username }}</td>
             <td>{{ data.date }}</td>
-            <td>{{ data.query }}</td>
         </tr>
       {% endfor %}
     </tbody>
    
 </table>
+
+<h3 style="color: white"> Customer Query:</h3>
+<div style="color:black; background:white  ;height:200px;overflow-x:hidden;overflow-y:auto;">
+  
+  {{ DATA[0].query }}
+</div><br><br>
+<button onclick="myFunction()">Edit Query</button>
+
+<div id="EditQuery" style="display:none;">
+  <form action="{{ url_for('EditQuery') }}" method="POST">
+      
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1">Enter New Query</label>
+        <textarea name="EditQuery" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+      </div>
+      <br><br>
+      <div id="align">
+          <input class="btn btn-primary" type="submit" value="Submit">
+          &nbsp; &nbsp;
+          <a class="btn btn-primary" href="{{ url_for('customer') }}" role="button">Cancel</a>
+        </div>
+  </form>
+</div>
 
 {% endblock %}

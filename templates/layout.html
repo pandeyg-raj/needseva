@@ -80,15 +80,35 @@
         <div class="collapse navbar-collapse" id="navbar"></div>
             {% if session.user_id %}
                 <ul class="nav justify-content-end">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('userhome') }}">{{ session.user_id }}</a>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{ session.user_id }}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item" href="{{ url_for('userhome') }}">About</a>
+                          <a class="dropdown-item" href="{{ url_for('customer') }}">Your Queries</a>
+                          <a class="dropdown-item" href="{{ url_for('updatedetails') }}">Update details</a>
+                          <a class="dropdown-item" href="{{ url_for('changepassword') }}">Change Password</a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="{{ url_for('signout') }}">SignOut</a>
+                        </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('test') }}"> Volunteer/Customer </a>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {% if cv %}
+                            {{ cv }}
+                            {% else %}
+                            select
+                            {% endif %}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ url_for('vol') }}">Volunteer</a>
+                            <a class="dropdown-item" href="{{ url_for('customer') }}">Customer</a>
+                        </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('signout') }}">Sign Out</a>
-                    </li>
+                    
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('contact') }}">Contact Us</a>
                     </li>
