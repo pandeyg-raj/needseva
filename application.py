@@ -35,6 +35,22 @@ def checkuser():
     return jsonify(key)
 
 
+@app.route('/emailcustomer')
+def emailcustomer():
+    dbsession = Session()
+    email = request.args.get("email")
+    user = session["user_id"]
+    print("called")
+    key = "Detailed Shared Sucessfully"
+    
+    dataDetails = dbsession.query(Details).filter_by( username = user ).first()
+
+    body = 'Volunteer Details: \n' + 'First Name: ' + dataDetails.FirstName + '\nLast Name: '+ dataDetails.LastName + '\nEmail: '+ dataDetails.email + '\nPhone: '+ str(dataDetails.phone)
+    sendEmail( "patelg.hima@gmail.com", "NeedSeva Vol info",  body)
+    print(body)
+    
+    return jsonify(key)
+
 
 @app.route('/favicon.ico')
 def favicon():

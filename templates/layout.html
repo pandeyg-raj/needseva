@@ -57,6 +57,59 @@
         });
         </script>
 
+    <script>
+
+    
+    function sendvolinfo(){
+
+        var cellVal;
+        var td = document.getElementById('unique');
+
+     
+
+                //gets table
+        var oTable = document.getElementById('example');
+
+        //gets rows of table
+        var rowLength = oTable.rows.length;
+
+        //loops through rows    
+        for (i = 1; i < rowLength; i++){
+
+        //gets cells of current row
+        var oCells = oTable.rows.item(i).cells;
+
+        //gets amount of cells of current row
+        var cellLength = oCells.length;
+
+        //loops through each cell in current row
+        for(var j = 2; j < cellLength-2; j++){
+            /* get your cell info here */
+            cellVal = oCells.item(j).innerHTML; 
+            
+            
+        }
+        }
+        
+        let data_para = {
+            email: cellVal
+         };
+
+         $.getJSON( "/emailcustomer", data_para ,function( data ) {
+
+        datavalue = data;
+       
+        document.getElementById("buttonid").disabled = true;
+        document.getElementById("endTimeLabel").style.display = "block";
+        
+        alert(datavalue)
+
+        });
+
+      }
+
+    </script>
+
         <title>
             {% block title %}
             {% endblock %}
