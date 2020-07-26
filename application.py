@@ -46,7 +46,7 @@ def emailcustomer():
     dataDetails = dbsession.query(Details).filter_by( username = user ).first()
 
     body = 'Volunteer Details: \n' + 'First Name: ' + dataDetails.FirstName + '\nLast Name: '+ dataDetails.LastName + '\nEmail: '+ dataDetails.email + '\nPhone: '+ str(dataDetails.phone)
-    sendEmail( "patelg.hima@gmail.com", "NeedSeva Vol info",  body)
+    sendEmail( email, "NeedSeva Vol info",  body)
     print(body)
     
     return jsonify(key)
