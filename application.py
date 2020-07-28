@@ -8,8 +8,15 @@ from sqlalchemy.orm import sessionmaker
 from sqldatabase import User, Recover, Details, Queries
 from sqlalchemy import join
 from sqlalchemy.sql import select
-engine = create_engine('sqlite:////var/www/FlaskApps/needseva.db', echo=True)
-#engine = create_engine('sqlite:///needseva.db', echo=True)
+
+database_string = os.getenv('DB_STRING')
+if not database_string:
+    print('no database name available, setting default')
+    os.environ['DB_STRING'] = "sqlite:///needseva.db"
+    print('trying again after setting')
+    database_string = os.getenv('DB_STRING')
+engine = create_engine(database_string, echo=True)
+#engine = create_engine('sqlite:////var/www/FlaskApps/needseva.db', echo=True)
 Session = sessionmaker(bind=engine)
 Session.configure(bind=engine)
 
@@ -42,13 +49,13 @@ def emailcustomer():
     user = session["user_id"]
     print("called")
     key = "Detailed Shared Sucessfully"
-    
+
     dataDetails = dbsession.query(Details).filter_by( username = user ).first()
 
     body = 'Volunteer Details: \n' + 'First Name: ' + dataDetails.FirstName + '\nLast Name: '+ dataDetails.LastName + '\nEmail: '+ dataDetails.email + '\nPhone: '+ str(dataDetails.phone)
     sendEmail( "patelg.hima@gmail.com", "NeedSeva Vol info",  body)
     print(body)
-    
+
     return jsonify(key)
 
 

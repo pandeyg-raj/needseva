@@ -1,12 +1,11 @@
-from sqlalchemy import Column, Integer, String, DateTime
+from sqlalchemy import Column, Integer, String, DateTime, create_engine
 from sqlalchemy.ext.declarative import declarative_base
-import datetime
+import datetime, os
 Base = declarative_base()
 
 class User(Base):
     __tablename__ = 'users'
-    id = Column(Integer, primary_key=True)
-    username = Column(String)
+    username = Column(String, primary_key=True)
     hash = Column(String)
 
     def __init__(self, username, hash):
@@ -52,3 +51,13 @@ class Queries(Base):
         self.username = username
         self.query = query
 
+if __name__  == "__main__":
+    database_string = os.getenv('DB_STRING')
+    if not database_string:
+        print('no database name available, setting default')
+        os.environ['DB_STRING'] = "sqlite:///needseva.db"
+        print('trying again after setting')
+        database_string = os.getenv('DB_STRING')
+    print(database_string)
+    engine2 = create_engine(database_string, echo=True)
+    Base.metadata.create_all(bind=engine2)
