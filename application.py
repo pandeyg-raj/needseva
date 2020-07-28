@@ -8,7 +8,6 @@ from sqlalchemy.orm import sessionmaker
 from sqldatabase import User, Recover, Details, Queries
 from sqlalchemy import join
 from sqlalchemy.sql import select
-<<<<<<< HEAD
 
 database_string = os.getenv('DB_STRING')
 if not database_string:
@@ -18,10 +17,6 @@ if not database_string:
     database_string = os.getenv('DB_STRING')
 engine = create_engine(database_string, echo=True)
 #engine = create_engine('sqlite:////var/www/FlaskApps/needseva.db', echo=True)
-=======
-#engine = create_engine('sqlite:////var/www/FlaskApps/needseva.db', echo=True)
-engine = create_engine('sqlite:///needseva.db', echo=True)
->>>>>>> 0625d1cb8b9ee0bbb022a6224f9c896cd4ddcfd5
 Session = sessionmaker(bind=engine)
 Session.configure(bind=engine)
 
