@@ -5,8 +5,33 @@ Welcome to NeedSeva
 
 {% block body %}
 
+<h2>Welcome to NeedSeva! </h2>
 <p id="indexpara">
- Welcome to NeedSeva! <br/>
-We are here to provide a platform to connect people who need help with online shopping and people who are willing to help.
+<br/>
+Due to the COVID19 pandemic, there have been many changes in our daily routines. One of the important and everyday tasks involves grocery and life-essential goods shopping, which has transitioned to online operation. This transition might not seem like a major problem for the young generation but for the older generation, it could be a bit of hassle.  These are difficult times, we all have to stand together and help each other during this uncertain situation. So we created this platform to provide a bridge to connect the elderly population with the community volunteers that are willing to devote their time in tackling this global pandemic.
 </p>
+</br>
+<h2>Here's how it works:</h2>
+</br>
+<div class="center d-flex bd-highlight">
+  <div class="p-2 flex-fill bd-highlight">
+    <img class="w-16 h-20 mb-2 mx-auto" alt="form" src="/static/form.png">
+    <p class="font-thin text-md">On the next screen, you'll fill out a registration form.</p>
+  </div>
+  <div class="p-2 flex-fill bd-highlight">
+    <img class="w-16 h-20 mb-2 mx-auto" alt="grocery" src="/static/grocery.png">
+    <p class="font-thin text-md">Then, you'll add a task you need to be completed: an errand to run, a pet to walk. You name it.</p>
+  </div>
+  <div class="p-2 flex-fill bd-highlight">
+    <img class="w-16 h-20 mb-2 mx-auto" alt="phone" src="/static/phone.png">
+    <p class="font-thin text-md">A friendly volunteer will contact you to complete the task.</p>
+  </div>
+</div>
+
+</br>
+<div id="align">
+  <a class="btn btn-primary" href="{{ url_for('register') }}" role="button">Register</a>
+  &nbsp; &nbsp;
+  <a class="btn btn-primary" href="{{ url_for('signin') }}" role="button">Sign In</a>
+</div>
 {% endblock %}
