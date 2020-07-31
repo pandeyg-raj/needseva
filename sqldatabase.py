@@ -54,10 +54,7 @@ class Queries(Base):
 if __name__  == "__main__":
     database_string = os.getenv('DB_STRING')
     if not database_string:
-        print('no database name available, setting default')
         os.environ['DB_STRING'] = "sqlite:///needseva.db"
-        print('trying again after setting')
         database_string = os.getenv('DB_STRING')
-    print(database_string)
     engine2 = create_engine(database_string, echo=True)
     Base.metadata.create_all(bind=engine2)
