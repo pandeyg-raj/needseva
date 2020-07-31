@@ -67,11 +67,10 @@ th
 body {
   background-image: url('wallpaper2.jpg');
   background-repeat:no-repeat;
+  background-size: cover;
 }
 
 html {
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
   background-size: cover;
+
 }
