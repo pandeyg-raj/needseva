@@ -1,6 +1,6 @@
 # needseva
 
-We are a volunteers who want to help the community with online shopping  
+We are a volunteers who want to provide a platform to help the community with online shopping  
 
 Requirements
 -
